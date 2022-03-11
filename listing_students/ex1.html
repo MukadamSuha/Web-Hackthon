@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <script src="angular.min.js"></script>
+</html>
+<head>
+    <script src="app.js"></script>
+</head>
+<body ng-app='myfirstapp' ng-init="name=''">
+    <div ng-controller="studentsController">
+        Enter your name :<input type="text" ng-model="name"/>
+        <table border="1" ng-if="name!=''">
+            <tr>
+            <th>Roll No</th>
+            <th> students name</th>
+            <th>Marks</th>
+            </tr>
+
+            <tr ng-if="name!=''" ng-repeat="st in students | filter:name">
+                <td>{{st.rollno}}</td>
+                <td>{{st.name}}</td>
+                <td>{{st.mcq}}</td>
+            </tr>
+        </table>
+        <span ng-if="name==''">
+            <font color="red">Enter something to display</font>
+        </span>
+        
+        <span ng-if="name!=''">
+            Total Records found:{{(students|filter:name).length}}
+        </span>
+        <br/>
+        
+    </div>
+</body>
+    
