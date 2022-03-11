@@ -1,0 +1,14 @@
+
+
+
+<input
+  type="text"
+  id="Name"
+  name=" name"
+  [ngModel]="name "
+  (ngModelChange)="name = $event"
+  #firstName="ngModel"
+/>
+<hello name="{{ name | reverse }}"></hello>
+
+
