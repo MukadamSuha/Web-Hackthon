@@ -1,0 +1,61 @@
+<div class="space-y-2">
+  <div>
+    <form (submit)="addTodo()">
+      <div class="flex space-x-2">
+        <input
+          class="
+            w-full
+            p-2
+            border
+            rounded
+            shadow-sm
+            outline-none
+            ring-purple-300
+            focus:ring-2
+          "
+          placeholder="Enter a Todo"
+          type="text"
+          name="inputTodo"
+          [(ngModel)]="inputTodo"
+        />
+        <button class="p-2 bg-purple-500 text-white w-28 rounded-md">
+          Add
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="border overflow-hidden rounded-md shadow-sm">
+    <table class="bg-white w-full border-hidden">
+      <thead>
+        <tr>
+          <th class="border p-1 w-14">#</th>
+          <th class="border p-1">Tasks</th>
+          <th class="border p-1 w-20">Action</th>
+          <th class="border p-1 w-28">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let todo of todos; let i = index">
+          <td class="text-center border p-1">{{ i + 1 }}</td>
+          <td
+            class="border p-1 px-2 {{ todo.completed ? 'line-through' : '' }} "
+          >
+            {{ todo.content }}
+          </td>
+          <td class="text-center border p-1">
+            <input (click)="toggleTaskComplete(i)" type="checkbox" />
+          </td>
+          <td class="text-center border p-1 px-2">
+            <p
+              class="text-sm text-white rounded-full {{
+                todo.completed ? 'bg-green-500' : 'bg-red-500'
+              }}"
+            >
+              {{ todo.completed ? 'Complete' : 'Incomplete' }}
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
