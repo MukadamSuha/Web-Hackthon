@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <script src="angular.min.js"></script>
+
+<head>
+<title> sort</title>
+    <script src="app.js"></script>
+   <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<section ng-app="app"  ng-controller="MainCtrl" ng-init="name=''">
+Enter your name :<input type="text" ng-model="name"/>
+        <table border="1" ng-if="name!=''">
+    <thead>
+      <tr>
+        <th>
+          <a href="#" ng-click="orderByField='rollno'; reverseSort = !reverseSort">
+          Roll No <span ng-show="orderByField == 'rollno"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+          </a>
+        </th>
+        <th>
+          <a href="#" ng-click="orderByField='name'; reverseSort = !reverseSort">
+            Name <span ng-show="orderByField == 'name'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+          </a>
+        </th>
+        <th>
+          <a href="#" ng-click="orderByField='mcq'; reverseSort = !reverseSort">
+          Marks <span ng-show="orderByField == 'mcq'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+          </a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="st in data.students|orderBy:orderByField:reverseSort |filter:name  ">
+        <td>{{st.rollno}}</td>
+             <td>{{st.name}}</td>
+                <td>{{st.mcq}}</td>
+      </tr>
+    </tbody>
+  </table>
+<span ng-if="name==''">
+            <font color="red">Enter something to display</font>
+        </span>
+        
+        <span ng-if="name!=''">
+            Total Records found:{{(data.students|filter:name).length}}
+        </span>
+
+</html>
